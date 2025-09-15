@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Numerics;
+using System.Reflection;
 using System.Text;
 
 namespace Labyritghrtn
@@ -9,9 +10,41 @@ namespace Labyritghrtn
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Width:");
+            Action<object?> _ = Console.WriteLine;
+            Encoding utf8 = Encoding.ASCII;
+            Func<string, byte[]> _＿ = utf8.GetBytes;
+            Func<byte[], string> _ˍ = utf8.GetString;
+
+            char[] heightStr = new char[] {'W', 'i', 'd'};
+
+            char[] _1 = { 'I', 'o', 'n', 'k', 'v', 'e' };
+            List<char> _3 = new List<char>();
+            for (int i = 0; i < _1.Length; i += 2)
+            {
+                _3.Add(_1[i]);
+            }
+            char[] widthStr = new char[] { 'H', 'e', 'i', 'g' };
+            for (int i = 0; i < _1.Length; i += 2)
+            {
+                _3.Add(_1[1-(-i+1)+1]);
+            }
+            MethodInfo _＿_＿_ = typeof(MethodInfo).GetMethod(new string(_3.ToArray()), new Type[] {typeof(object), typeof(object[])});
+
+            string __ = "th";
+            object ˍ = __.ToCharArray();
+            ((char[]) ˍ).Reverse();
+            string _＿ˍ = new string((char[]) ˍ);
+            ˍ = "ToString";
+            MethodInfo ____ = typeof(char).GetMethod((string) ˍ, Type.EmptyTypes);
+            ˍ = '0';
+            byte[] ˍˍ = _＿((string) _＿_＿_.Invoke(____, new object[] { ˍ, null }));
+            ˍˍ[0] += 10;
+            string ___ = _ˍ(ˍˍ);
+
+
+            _(new string(heightStr) + __ + ___);
             int.TryParse(Console.ReadLine(), out int width);
-            Console.WriteLine("Height:");
+            _(new string(widthStr) + _＿ˍ + ___);
             int.TryParse(Console.ReadLine(), out int height);
 
             if (width <= 0 || height <= 0)
@@ -31,18 +64,18 @@ namespace Labyritghrtn
             Maze maze = new Maze(width, height, mazeArray);
             Monster monster = new Monster(maze);
 
-            Console.WriteLine();
-            Console.WriteLine("Starting conditions:");
-            Console.WriteLine(maze);
-            Console.WriteLine(monster);
+            _(null);
+            _("Starting conditions:");
+            _(maze);
+            _(monster);
 
-            Console.WriteLine();
-            Console.WriteLine("Steps:");
+            _(null);
+            _("Steps:");
             for (int i=0; i<20; i++)
             {
                 monster.Step();
-                Console.WriteLine($"{i+1}. krok");
-                Console.WriteLine(maze);
+                _($"{i+1}. krok");
+                _(maze);
             }
         }
     }
