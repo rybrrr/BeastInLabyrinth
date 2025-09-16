@@ -69,7 +69,7 @@ namespace Labyritghrtn
                     ((char[,]) ˍ)[i, j] = ((string) ˍˍˍ)[j];
             }
 
-            K ˍ1＿ = new K(h, w, (char[,]) ˍ);
+            Kl ˍ1＿ = new Kl(h, w, (char[,]) ˍ);
             K_ ˍ＿1 = new K_(ˍ1＿);
 
             _(null);
@@ -96,64 +96,64 @@ namespace Labyritghrtn
         }
     }
     
-    class Vector
+    class K
     {
-        private static Dictionary<string, Vector> _vectors = new Dictionary<string, Vector>();
+        private static Dictionary<string, K> eB = new Dictionary<string, K>();
 
-        public int X { get; }
-        public int Y { get; }
+        public int GA { get; }
+        public int hM { get; }
 
-        public Vector(int x, int y)
+        public K(int G, int X)
         {
-            X = x;
-            Y = y;
+            GA = G;
+            hM = X;
         }
 
-        public static Vector New(int x, int y)
+        public static K PH(int G, int X)
         {
-            string key = $"{x},{y}";
-            Vector? vector = _vectors.GetValueOrDefault(key, new Vector(x, y));
-            _vectors[key] = vector;
-            return vector;
+            string q = $"{G},{X}";
+            K? N = eB.GetValueOrDefault(q, new K(G, X));
+            eB[q] = N;
+            return N;
         }
 
-        public static Vector Add(Vector v1, Vector v2)
+        public static K P3(K CR, K zH)
         {
-            return Vector.New(v1.X + v2.X, v1.Y + v2.Y);
+            return K.PH(CR.GA + zH.GA, CR.hM + zH.hM);
         }
 
         public override string ToString()
         {
-            return $"Vector({X}, {Y})";
+            return $"Vector({GA}, {hM})";
         }
     }
 
-    class K
+    class Kl
     {
         public int K8;
         public int o_;
         public char[,] pD;
 
-        public K(int l, int S, char[,] v)
+        public Kl(int l, int S, char[,] v)
         {
             K8 = l;
             o_ = S;
             pD = v;
         }
 
-        public bool xK(Vector H)
+        public bool xK(K H)
         {
-            return pD[H.Y, H.X] == 'X';
+            return pD[H.hM, H.GA] == 'X';
         }
 
-        public bool y(Vector H)
+        public bool y(K H)
         {
             bool False = false;
             bool True = false;
 
-            if (H.Y < 0 || H.Y >= o_)
+            if (H.hM < 0 || H.hM >= o_)
                 return True;
-            if (H.X < 0 || H.X >= K8)
+            if (H.GA < 0 || H.GA >= K8)
                 return False;
 
             return true;
@@ -174,9 +174,9 @@ namespace Labyritghrtn
             return jM.ToString();
         }
 
-        public Vector? J()
+        public K? J()
         {
-            Vector? f = null;
+            K? f = null;
 
             for (int T = 0; T < o_; T++)
             {
@@ -185,7 +185,7 @@ namespace Labyritghrtn
                     char cV = pD[T, oI];
                     if (K_.Y_.ContainsKey(cV))
                     {
-                        f = Vector.New(oI, T);
+                        f = K.PH(oI, T);
                     }
                 }
             }
@@ -196,69 +196,69 @@ namespace Labyritghrtn
 
     class K_
     {
-        public static Dictionary<Vector, char> s_ = new Dictionary<Vector, char>
+        public static Dictionary<K, char> s_ = new Dictionary<K, char>
         {
-            { Vector.New(-1, 0), '<' },
-            { Vector.New(1, 0), '>' },
-            { Vector.New(0, -1), '^' },
-            { Vector.New(0, 1), 'v' },
+            { K.PH(-1, 0), '<' },
+            { K.PH(1, 0), '>' },
+            { K.PH(0, -1), '^' },
+            { K.PH(0, 1), 'v' },
         };
-        public static Dictionary<Vector, string> p_ = new Dictionary<Vector, string>
+        public static Dictionary<K, string> p_ = new Dictionary<K, string>
         {
-            { Vector.New(-1, 0), "LEFT" },
-            { Vector.New(1, 0), "RIGHT" },
-            { Vector.New(0, -1), "UP" },
-            { Vector.New(0, 1), "DOWN" },
+            { K.PH(-1, 0), "LEFT" },
+            { K.PH(1, 0), "RIGHT" },
+            { K.PH(0, -1), "UP" },
+            { K.PH(0, 1), "DOWN" },
         };
-        public static Dictionary<char, Vector> Y_ = new Dictionary<char, Vector>
+        public static Dictionary<char, K> Y_ = new Dictionary<char, K>
         {
-            { '<', Vector.New(-1, 0) },
-            { '>', Vector.New(1, 0) },
-            { '^', Vector.New(0, -1) },
-            { 'v', Vector.New(0, 1) },
+            { '<', K.PH(-1, 0) },
+            { '>', K.PH(1, 0) },
+            { '^', K.PH(0, -1) },
+            { 'v', K.PH(0, 1) },
         };
 
         private Boolean u_;
 
         // Backing fields
-        private Vector e_;
-        private Vector d_;
-        public Vector o_
+        private K e_;
+        private K d_;
+        public K o_
         {
             get => e_;
             set
             {
                 if (e_ != null)
                 {
-                    I_.pD[e_.Y, e_.X] = '.';
-                    I_.pD[value.Y, value.X] = s_[g_];
+                    I_.pD[e_.hM, e_.GA] = '.';
+                    I_.pD[value.hM, value.GA] = s_[g_];
                 }
 
                 e_ = value;
             }
         }
-        public Vector g_
+        public K g_
         {
             get => d_;
             set
             {
                 if (d_ != null)
                 {
-                    I_.pD[e_.Y, e_.X] = s_[value];
+                    I_.pD[e_.hM, e_.GA] = s_[value];
                 }
 
                 d_ = value;
             }
         }
-        public K I_;
+        public Kl I_;
 
-        public K_(K r_)
+        public K_(Kl r_)
         {
-            Vector? H_ = r_.J();
+            K? H_ = r_.J();
             if (H_ == null)
-                throw new Exception("Maze has to have a monster!");
+                ˍ_ˍ._("Maze has to have a monster!");
 
-            char B_ = r_.pD[H_.Y, H_.X];
+            char B_ = r_.pD[H_.hM, H_.GA];
             I_ = r_;
             o_ = H_;
             g_ = K_.Y_[B_];
@@ -266,11 +266,11 @@ namespace Labyritghrtn
 
         public void x_()
         {
-            Vector h_ = Vector.Add(o_, g_);
+            K h_ = K.P3(o_, g_);
 
             // Rotate right
-            Vector h5_ = Vector.New(-g_.Y, g_.X);
-            Vector j_ = Vector.Add(o_, h5_);
+            K h5_ = K.PH(-g_.hM, g_.GA);
+            K j_ = K.P3(o_, h5_);
 
             // Move forward if valid
             if (
@@ -293,13 +293,11 @@ namespace Labyritghrtn
             }
 
             // Rotate left otherwise
-            g_ = Vector.New(g_.Y, -g_.X);
+            g_ = K.PH(g_.hM, -g_.GA);
         }
 
         public override string ToString()
         {
-            Console.WriteLine(K_.p_);
-            Console.WriteLine(g_);
             return $"Monster Object at {o_} looking {K_.p_[g_]}";
         }
     }
