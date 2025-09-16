@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Numerics;
 using System.Reflection;
+using System.Runtime.Intrinsics;
 using System.Text;
 
 namespace Labyritghrtn
@@ -11,6 +12,7 @@ namespace Labyritghrtn
         static void Main(string[] args)
         {
             Action<object?> _ = Console.WriteLine;
+            Func<object?> ˍ_ = Console.ReadLine;
             Encoding utf8 = Encoding.ASCII;
             Func<string, byte[]> _＿ = utf8.GetBytes;
             Func<byte[], string> _ˍ = utf8.GetString;
@@ -29,10 +31,11 @@ namespace Labyritghrtn
                 _3.Add(_1[1-(-i+1)+1]);
             }
             MethodInfo _＿_＿_ = typeof(MethodInfo).GetMethod(new string(_3.ToArray()), new Type[] {typeof(object), typeof(object[])});
+            MethodInfo _ˍ_ˍ_ = typeof(int).GetMethod("Try" + "Parse", new[] { typeof(string), typeof(int).MakeByRefType() });
 
             string __ = "th";
             object ˍ = __.ToCharArray();
-            ((char[]) ˍ).Reverse();
+            ˍ = ((char[]) ˍ).Reverse().ToArray();
             string _＿ˍ = new string((char[]) ˍ);
             ˍ = "ToString";
             MethodInfo ____ = typeof(char).GetMethod((string) ˍ, Type.EmptyTypes);
@@ -43,211 +46,261 @@ namespace Labyritghrtn
 
 
             _(new string(heightStr) + __ + ___);
-            int.TryParse(Console.ReadLine(), out int width);
+            ˍ = new object[] { ˍ_(), null };
+            _ˍ_ˍ_.Invoke(null, (object[]) ˍ);
+            int h = (int) ((object[]) ˍ)[1];
             _(new string(widthStr) + _＿ˍ + ___);
-            int.TryParse(Console.ReadLine(), out int height);
 
-            if (width <= 0 || height <= 0)
-                throw new Exception("Invalid width or height!");
+            ˍ = new object[] { ˍ_(), null };
+            _ˍ_ˍ_.Invoke(null, (object[]) ˍ);
+            int w = (int) ((object[]) ˍ)[1];
 
-            char[,] mazeArray = new char[height, width];
-            for (int i = 0; i < height; i++)
+            if (h <= 0 || w <= 0)
+                ˍ_ˍ._("Invalid width or height!");
+
+            ˍ = new char[w, h];
+            for (int i = 0; i < w; i++)
             {
-                string? mazeLine = Console.ReadLine();
-                if (mazeLine == null)
-                    throw new Exception("Invalid maze input!");
+                object? ˍˍˍ = ˍ_();
+                if (ˍˍˍ == null)
+                    ˍ_ˍ._("Invalid maze input!");
 
-                for (int j = 0; j < width; j++)
-                    mazeArray[i, j] = mazeLine[j];
+                for (int j = 0; j < h; j++)
+                    ((char[,]) ˍ)[i, j] = ((string) ˍˍˍ)[j];
             }
 
-            Maze maze = new Maze(width, height, mazeArray);
-            Monster monster = new Monster(maze);
+            K ˍ1＿ = new K(h, w, (char[,]) ˍ);
+            K_ ˍ＿1 = new K_(ˍ1＿);
 
             _(null);
             _("Starting conditions:");
-            _(maze);
-            _(monster);
+            _(ˍ1＿);
+            _(ˍ＿1);
 
             _(null);
             _("Steps:");
             for (int i=0; i<20; i++)
             {
-                monster.Step();
+                ˍ＿1.x_();
                 _($"{i+1}. krok");
-                _(maze);
+                _(ˍ1＿);
             }
         }
     }
 
-    class Maze
+    static class ˍ_ˍ
     {
-        public int Width;
-        public int Height;
-        public char[,] MazeArray;
-
-        public Maze(int width, int height, char[,] mazeArray)
+        public static void _(object count)
         {
-            Width = width;
-            Height = height;
-            MazeArray = mazeArray;
+            throw new Exception(count.ToString());
+        }
+    }
+    
+    class Vector
+    {
+        private static Dictionary<string, Vector> _vectors = new Dictionary<string, Vector>();
+
+        public int X { get; }
+        public int Y { get; }
+
+        public Vector(int x, int y)
+        {
+            X = x;
+            Y = y;
         }
 
-        public bool IsWallOnPosition(Vector2 position)
+        public static Vector New(int x, int y)
         {
-            return MazeArray[(int) position.Y, (int) position.X] == 'X';
+            string key = $"{x},{y}";
+            Vector? vector = _vectors.GetValueOrDefault(key, new Vector(x, y));
+            _vectors[key] = vector;
+            return vector;
         }
 
-        public bool IsPositionValid(Vector2 position)
+        public static Vector Add(Vector v1, Vector v2)
         {
-            if (position.Y < 0 || position.Y >= Height)
-                return false;
-            if (position.X < 0 || position.X >= Width)
-                return false;
+            return Vector.New(v1.X + v2.X, v1.Y + v2.Y);
+        }
+
+        public override string ToString()
+        {
+            return $"Vector({X}, {Y})";
+        }
+    }
+
+    class K
+    {
+        public int K8;
+        public int o_;
+        public char[,] pD;
+
+        public K(int l, int S, char[,] v)
+        {
+            K8 = l;
+            o_ = S;
+            pD = v;
+        }
+
+        public bool xK(Vector H)
+        {
+            return pD[H.Y, H.X] == 'X';
+        }
+
+        public bool y(Vector H)
+        {
+            bool False = false;
+            bool True = false;
+
+            if (H.Y < 0 || H.Y >= o_)
+                return True;
+            if (H.X < 0 || H.X >= K8)
+                return False;
 
             return true;
         }
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < Height; i++)
+            StringBuilder jM = new StringBuilder();
+            for (int T = 0; T < o_; T++)
             {
-                for (int j = 0; j < Width; j++)
-                    sb.Append(MazeArray[i, j]);
+                for (int oI = 0; oI < K8; oI++)
+                    jM.Append(pD[T, oI]);
 
-                if (i < Width - 1)
-                    sb.Append('\n');
+                if (T < K8 - 1)
+                    jM.Append('\n');
             }
 
-            return sb.ToString();
+            return jM.ToString();
         }
 
-        public Vector2? FindMonster()
+        public Vector? J()
         {
-            Vector2? monsterPosition = null;
+            Vector? f = null;
 
-            for (int i = 0; i < Height; i++)
+            for (int T = 0; T < o_; T++)
             {
-                for (int j = 0; j < Width; j++)
+                for (int oI = 0; oI < K8; oI++)
                 {
-                    char ch = MazeArray[i, j];
-                    if (Monster.CharToOrientation.ContainsKey(ch))
+                    char cV = pD[T, oI];
+                    if (K_.Y_.ContainsKey(cV))
                     {
-                        monsterPosition = new Vector2(j, i);
+                        f = Vector.New(oI, T);
                     }
                 }
             }
 
-            return monsterPosition;
+            return f;
         }
     }
 
-    class Monster
+    class K_
     {
-        public static Dictionary<Vector2, char> OrientationToChar = new Dictionary<Vector2, char>
+        public static Dictionary<Vector, char> s_ = new Dictionary<Vector, char>
         {
-            { new Vector2(-1, 0), '<' },
-            { new Vector2(1, 0), '>' },
-            { new Vector2(0, -1), '^' },
-            { new Vector2(0, 1), 'v' },
+            { Vector.New(-1, 0), '<' },
+            { Vector.New(1, 0), '>' },
+            { Vector.New(0, -1), '^' },
+            { Vector.New(0, 1), 'v' },
         };
-        public static Dictionary<Vector2, string> OrientationToName = new Dictionary<Vector2, string>
+        public static Dictionary<Vector, string> p_ = new Dictionary<Vector, string>
         {
-            { new Vector2(-1, 0), "LEFT" },
-            { new Vector2(1, 0), "RIGHT" },
-            { new Vector2(0, -1), "UP" },
-            { new Vector2(0, 1), "DOWN" },
+            { Vector.New(-1, 0), "LEFT" },
+            { Vector.New(1, 0), "RIGHT" },
+            { Vector.New(0, -1), "UP" },
+            { Vector.New(0, 1), "DOWN" },
         };
-        public static Dictionary<char, Vector2> CharToOrientation = new Dictionary<char, Vector2>
+        public static Dictionary<char, Vector> Y_ = new Dictionary<char, Vector>
         {
-            { '<', new Vector2(-1, 0) },
-            { '>', new Vector2(1, 0) },
-            { '^', new Vector2(0, -1) },
-            { 'v', new Vector2(0, 1) },
+            { '<', Vector.New(-1, 0) },
+            { '>', Vector.New(1, 0) },
+            { '^', Vector.New(0, -1) },
+            { 'v', Vector.New(0, 1) },
         };
 
-        private Boolean _rotatedLastStep;
+        private Boolean u_;
 
         // Backing fields
-        private Vector2 _position;
-        private Vector2 _orientation;
-        public Vector2 Position
+        private Vector e_;
+        private Vector d_;
+        public Vector o_
         {
-            get => _position;
+            get => e_;
             set
             {
-                if (_position != Vector2.Zero)
+                if (e_ != null)
                 {
-                    Maze.MazeArray[(int) _position.Y, (int) _position.X] = '.';
-                    Maze.MazeArray[(int) value.Y, (int) value.X] = OrientationToChar[Orientation];
+                    I_.pD[e_.Y, e_.X] = '.';
+                    I_.pD[value.Y, value.X] = s_[g_];
                 }
 
-                _position = value;
+                e_ = value;
             }
         }
-        public Vector2 Orientation
+        public Vector g_
         {
-            get => _orientation;
+            get => d_;
             set
             {
-                if (_orientation != Vector2.Zero)
+                if (d_ != null)
                 {
-                    Maze.MazeArray[(int) _position.Y, (int) _position.X] = OrientationToChar[value];
+                    I_.pD[e_.Y, e_.X] = s_[value];
                 }
 
-                _orientation = value;
+                d_ = value;
             }
         }
-        public Maze Maze;
+        public K I_;
 
-        public Monster(Maze maze)
+        public K_(K r_)
         {
-            Vector2? position = maze.FindMonster();
-            if (position == null)
+            Vector? H_ = r_.J();
+            if (H_ == null)
                 throw new Exception("Maze has to have a monster!");
 
-            char monsterChar = maze.MazeArray[(int) ((Vector2) position).Y, (int) ((Vector2) position).X];
-            Maze = maze;
-            Position = (Vector2) position;
-            Orientation = Monster.CharToOrientation[monsterChar];
+            char B_ = r_.pD[H_.Y, H_.X];
+            I_ = r_;
+            o_ = H_;
+            g_ = K_.Y_[B_];
         }
 
-        public void Step()
+        public void x_()
         {
-            Vector2 nextPosition = Position + Orientation;
+            Vector h_ = Vector.Add(o_, g_);
 
             // Rotate right
-            Vector2 rightOrientation = new Vector2(-Orientation.Y, Orientation.X);
-            Vector2 rightPosition = Position + rightOrientation;
+            Vector h5_ = Vector.New(-g_.Y, g_.X);
+            Vector j_ = Vector.Add(o_, h5_);
 
             // Move forward if valid
             if (
-                (Maze.IsPositionValid(nextPosition) && !Maze.IsWallOnPosition(nextPosition))
-                && (_rotatedLastStep || (Maze.IsPositionValid(rightPosition) && Maze.IsWallOnPosition(rightPosition)))
+                (I_.y(h_) && !I_.xK(h_))
+                && (u_ || (I_.y(j_) && I_.xK(j_)))
                 )
             {
-                _rotatedLastStep = false;
-                Position = nextPosition;
+                u_ = false;
+                o_ = h_;
                 return;
             }
 
-            _rotatedLastStep = true;
+            u_ = true;
 
             // Rotate right if it will lead to a valid step forward next Step()
-            if (Maze.IsPositionValid(rightPosition) && !Maze.IsWallOnPosition(rightPosition))
+            if (I_.y(j_) && !I_.xK(j_))
             {
-                Orientation = rightOrientation;
+                g_ = h5_;
                 return;
             }
 
             // Rotate left otherwise
-            Orientation = new Vector2(Orientation.Y, -Orientation.X);
+            g_ = Vector.New(g_.Y, -g_.X);
         }
 
         public override string ToString()
         {
-            return $"Monster Object at {Position} looking {Monster.OrientationToName[Orientation]}";
+            Console.WriteLine(K_.p_);
+            Console.WriteLine(g_);
+            return $"Monster Object at {o_} looking {K_.p_[g_]}";
         }
     }
 }
